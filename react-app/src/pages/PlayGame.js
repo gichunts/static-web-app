@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { gql, useMutation, useQuery } from '@apollo/client';
-import { useHistory, useParams } from 'react-router-dom';
+import { gql, useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 
 const time = 5;
 const GET_GAME = gql`
@@ -31,7 +31,7 @@ const GET_GAME = gql`
 const PlayGame = () => {
   // const history=useHistory()
   const { id } = useParams();
-  const { loading, error, data } = useQuery(GET_GAME, {
+  const { data } = useQuery(GET_GAME, {
     variables: { id },
   });
   const [answer, setAnswer] = useState('');
@@ -51,7 +51,7 @@ const PlayGame = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (questions && questions.length != 0) {
+      if (questions && questions.length !== 0) {
         if (seconds === 0) {
           setSeconds(time);
           setQuestions(questions.slice(1));
@@ -66,12 +66,12 @@ const PlayGame = () => {
   }, [seconds, questions]);
 
   useEffect(() => {
-    if (questions && seconds != 0) {
+    if (questions && seconds !== 0) {
       if (data.game.questions.length) {
         setQuestion(questions[0]);
       }
     }
-  }, [questions]);
+  }, [questions, data, seconds]);
 
   console.log(answer);
   return (
