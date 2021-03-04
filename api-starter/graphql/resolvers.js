@@ -31,6 +31,27 @@ const resolvers = {
     games: () => {
       return games;
     },
+
+    playerResults: (_, { gameId, playerId }) => {
+      const game = games.find((g) => g.id === gameId);
+
+      if (!game) {
+        throw new ValidationError("No game found!");
+      }
+
+      const player = game.players.find((p) => p.id === playerId);
+
+      return player.answers.map((answer) => {
+        return {
+          submittedAnswer: answer.answer,
+          correctAnswer: answer.question.correctAnswer,
+          question: answer.question.question,
+          name: player.name,
+          answers: answer.question.answers,
+          correct: answer.question.correctAnswer === answer.answer,
+        };
+      });
+    },
   },
   Mutation: {
     createGame: async () => {

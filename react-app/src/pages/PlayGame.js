@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const time = 5;
 const GET_GAME = gql`
@@ -37,16 +37,8 @@ const SUBMIT_ANSWER = gql`
   }
 `;
 
-// const CREATE_GAME = gql`
-//   mutation {
-//     createGame {
-//       id
-//     }
-//   }
-// `;
-
 const PlayGame = () => {
-  // const history=useHistory()
+  const history = useHistory();
   const { id, playerId } = useParams();
   const { data } = useQuery(GET_GAME, {
     variables: { id },
@@ -77,12 +69,14 @@ const PlayGame = () => {
         }
 
         setSeconds((seconds) => seconds - 1);
+      } else if (questions.length === 0) {
+        history.push(`/game/finish/${id}/${playerId}`);
       }
     }, 1000);
     return () => {
       clearInterval(interval);
     };
-  }, [seconds, questions]);
+  }, [seconds, questions, id, playerId, history]);
 
   useEffect(() => {
     if (questions && seconds !== 0) {

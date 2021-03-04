@@ -8,6 +8,7 @@ import About from './pages/About';
 import TriviaGame from './pages/TriviaGame';
 import JoinGame from './pages/JoinGame';
 import PlayGame from './pages/PlayGame';
+import EndOfTheGame from './pages/EndOfTheGame';
 
 const Products = withRouter(
   lazy(() => import(/* webpackChunkName: "products" */ './products/Products')),
@@ -29,6 +30,11 @@ class App extends Component {
                 <Route exact path="/triviagame" component={TriviaGame} />
                 <Route path="/game/join/:id" component={JoinGame} />
                 <Route path="/game/play/:id/:playerId" component={PlayGame} />
+                <Route
+                  path="/game/finish/:id/:playerId"
+                  component={EndOfTheGame}
+                />
+
                 <Route exact path="**" component={NotFound} />
               </Switch>
             </Suspense>
