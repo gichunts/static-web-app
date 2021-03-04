@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
 const time = 5;
@@ -19,6 +19,23 @@ const GET_GAME = gql`
     }
   }
 `;
+const SUBMIT_ANSWER = gql`
+  mutation submitAnswer(
+    $gameId: ID!
+    $playerId: ID!
+    $questionId: ID!
+    $answer: String
+  ) {
+    submitAnswer(
+      gameId: $gameId
+      playerId: $playerId
+      questionId: $questionId
+      answer: $answer
+    ) {
+      id
+    }
+  }
+`;
 
 // const CREATE_GAME = gql`
 //   mutation {
@@ -30,15 +47,17 @@ const GET_GAME = gql`
 
 const PlayGame = () => {
   // const history=useHistory()
-  const { id } = useParams();
+  const { id, playerId } = useParams();
   const { data } = useQuery(GET_GAME, {
     variables: { id },
   });
+
   const [answer, setAnswer] = useState('');
   const [questions, setQuestions] = useState();
   const [question, setQuestion] = useState();
   const [seconds, setSeconds] = useState(time);
 
+  const [submitAnswer] = useMutation(SUBMIT_ANSWER);
   useEffect(() => {
     console.log('inside data');
     if (data) {
@@ -73,7 +92,15 @@ const PlayGame = () => {
     }
   }, [questions, data, seconds]);
 
-  console.log(answer);
+  useEffect(() => {
+    if (question && seconds === 0) {
+      submitAnswer({
+        variables: { gameId: id, playerId, questionId: question.id, answer },
+      });
+    }
+  }, [submitAnswer, id, playerId, question, answer, seconds]);
+
+  // console.log(answer);
   return (
     <div>
       <h1>Game id: {id}</h1>
@@ -111,8 +138,8 @@ const PlayGame = () => {
 
             <button
               onClick={() => {
-                setQuestions(questions.slice(1));
-                setSeconds(time);
+                // setQuestions(questions.slice(1));
+                setSeconds(0);
               }}
             >
               {question ? `Submit Answer` : `see your results`}
