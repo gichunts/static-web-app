@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 
-const GET_GREETING = gql`
-  query games {
-    games {
-      id
-    }
-  }
-`;
+// const GET_GREETING = gql`
+//   query games {
+//     games {
+//       id
+//     }
+//   }
+// `;
 // const GET_HELLO = gql`
 //   query {
 //     hello
@@ -38,7 +38,7 @@ const TriviaGame = () => {
       console.log(data);
       history.push(`/game/join/${data.createGame.id}`);
     }
-  }, [loading, data, error]);
+  }, [loading, data, error, history]);
 
   return (
     <div className="content-container">
