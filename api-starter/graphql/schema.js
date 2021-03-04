@@ -46,7 +46,7 @@ const typeDef = gql`
     createGame: Game
     addPlayerToGame(id: ID!, name: String!): Player!
     startGame(id: ID!): Game
-    submitAnswer(gameId: ID!, playerId: ID!, questionId: ID!, answer: String!): Player
+    submitAnswer(gameId: ID!, playerId: ID!, questionId: ID!, answer: String): Player
   }
 `;
 
