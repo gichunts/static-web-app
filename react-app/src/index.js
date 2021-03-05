@@ -12,7 +12,7 @@ import app, { productSaga } from './store';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:7071/api/graphql',
+  uri: 'https://white-ocean-0cd580e10.azurestaticapps.net/api/graphql',
   fetchOptions: {
     mode: 'no-cors',
   },
