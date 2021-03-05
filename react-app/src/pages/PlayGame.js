@@ -69,8 +69,6 @@ const PlayGame = () => {
         }
 
         setSeconds((seconds) => seconds - 1);
-      } else if (questions.length === 0) {
-        history.push(`/game/finish/${id}/${playerId}`);
       }
     }, 1000);
     return () => {
@@ -108,11 +106,13 @@ const PlayGame = () => {
               {question && (
                 <div>
                   <h1>{question.id}</h1>
+                  <br />
                   {question.answers.map((a) => {
                     return (
                       <li key={a}>
                         <label>
                           <input
+                            style={{ marginRight: '15px' }}
                             type="radio"
                             value={a}
                             onChange={() => {
@@ -134,6 +134,9 @@ const PlayGame = () => {
               onClick={() => {
                 // setQuestions(questions.slice(1));
                 setSeconds(0);
+                if (questions.length === 0) {
+                  history.push(`/game/finish/${id}/${playerId}`);
+                }
               }}
             >
               {question ? `Submit Answer` : `see your results`}
@@ -146,20 +149,3 @@ const PlayGame = () => {
 };
 
 export default PlayGame;
-
-// import React, { useEffect, useState } from 'react';
-
-// const App = () => {
-//   const [count, setCount] = useState(0);
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       setCount(2);
-//     }, 1000);
-//     return () => clearTimeout(timer);
-//   }, []);
-
-//   console.log('hello');
-//   return <div>Hello, World</div>;
-// };
-
-// export default App;

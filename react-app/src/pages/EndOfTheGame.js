@@ -35,13 +35,14 @@ const EndOfTheGame = () => {
         return (
           <div key={id}>
             <h1>
-              {correct ? '👍' : '👎'}
+              {correct ? '✅' : '❌'}
               {question}
             </h1>
+            <br />
             <div style={{ marginLeft: '10px' }}>
               <h2>correct answer:{correctAnswer}</h2>
               <h2> your answer:{submittedAnswer}</h2>
-              <h2>{`${correct}`}</h2>
+              {/* <h2>{`${correct}`}</h2> */}
             </div>
             <br />
           </div>

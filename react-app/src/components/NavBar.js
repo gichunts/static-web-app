@@ -12,7 +12,7 @@ const NavBar = (props) => (
         About
       </NavLink> */}
       <NavLink to="/triviagame" activeClassName="active-link">
-        TriviaGame
+        Trivia Game
       </NavLink>
     </ul>
     {props.children}

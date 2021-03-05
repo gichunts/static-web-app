@@ -43,13 +43,17 @@ const TriviaGame = () => {
   return (
     <div className="content-container">
       <div className="content-title-group not-found">
-        <h2 className="title">data </h2>
+        <h2 className="title">
+          Welcome! Answer multiple-choice quiz questions as quickly and as
+          accurately as possible . Your score will be displayed on completion of
+          the game.
+        </h2>
         <p>Create a new game!</p>
         <button
           type="submit"
           onClick={() => {
             setCreate(true);
-            console.log(create);
+            // console.log(create);
           }}
         >
           Start the game
