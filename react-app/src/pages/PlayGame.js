@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { useParams, useHistory } from 'react-router-dom';
 
-const time = 5;
+const time = 30;
 const GET_GAME = gql`
   query getGame($id: ID!) {
     game(id: $id) {
