@@ -42,14 +42,22 @@ const TriviaGame = () => {
 
   return (
     <div className="content-container">
-      <div className="content-title-group not-found">
+      <div
+        className="content-title-group not-found"
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
         <h2 className="title">
-          Welcome! Answer multiple-choice quiz questions as quickly and as
-          accurately as possible . Your score will be displayed on completion of
-          the game.
+          Answer multiple-choice quiz questions as quickly and as accurately as
+          possible . Your score will be displayed on completion of the game.
         </h2>
-        <p>Create a new game!</p>
+        <p style={{ marginBottom: '30px' }}>Create a new game!</p>
         <button
+          className="glow-on-hover"
           type="submit"
           onClick={() => {
             setCreate(true);

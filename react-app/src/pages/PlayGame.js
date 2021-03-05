@@ -92,7 +92,6 @@ const PlayGame = () => {
     }
   }, [submitAnswer, id, playerId, question, answer, seconds]);
 
-  // console.log(answer);
   return (
     <div>
       <h1>Game id: {id}</h1>
@@ -109,7 +108,7 @@ const PlayGame = () => {
                   <br />
                   {question.answers.map((a) => {
                     return (
-                      <li key={a}>
+                      <li key={a} style={{ marginTop: '10px' }}>
                         <label>
                           <input
                             style={{ marginRight: '15px' }}
@@ -131,8 +130,8 @@ const PlayGame = () => {
             </ul>
 
             <button
+              className="glow-on-hover"
               onClick={() => {
-                // setQuestions(questions.slice(1));
                 setSeconds(0);
                 if (questions.length === 0) {
                   history.push(`/game/finish/${id}/${playerId}`);
