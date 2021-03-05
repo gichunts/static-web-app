@@ -15,9 +15,11 @@ $shade-light: #fafafa;
 .menu-list .active-link,
 .menu-list .router-link-active {
   color: #fff;
-  background-color: $link;
 }
-
+.menu-list a:hover {
+  color: #fff;
+  background-color: #000;
+}
 .not-found {
   i {
     font-size: 20px;

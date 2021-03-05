@@ -36,6 +36,7 @@ const JoinGame = () => {
     <div className="content-container">
       <h2 className="title">Join the game:{id}</h2>
       <input
+        style={{ width: '223px', height: '38px' }}
         type="text"
         id="name"
         value={name}
@@ -45,13 +46,13 @@ const JoinGame = () => {
       />
       <br />
       <button
+        className="glow-on-hover"
         type="button"
         onClick={() => {
           console.log(name, loading);
           setLoading(true);
         }}
         style={{
-          color: 'red',
           marginTop: '20px',
         }}
         disabled={!name || loading}

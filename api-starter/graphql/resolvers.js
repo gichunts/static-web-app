@@ -23,7 +23,7 @@ const QUESTIONS = {
     { question: "Which RAID array type is associated with data mirroring?", correct_answer: "RAID 1", incorrect_answers: ["RAID 0", "RAID 10", "RAID 5"] },
     { question: "What is the name given to layer 4 of the Open Systems Interconnection (ISO) model?", correct_answer: "Transport", incorrect_answers: ["Session", "Data link", "Network"] },
     {
-      question: "Who invented the &quot;Spanning Tree Protocol&quot;?",
+      question: "Who invented the 'Spanning Tree Protocol?",
       correct_answer: "Radia Perlman",
       incorrect_answers: ["Paul Vixie", "Vint Cerf", "Michael Roberts"],
     },
@@ -123,7 +123,7 @@ const resolvers = {
             id: q.question,
             question: q.question,
             correctAnswer: q.correct_answer,
-            answers: q.incorrect_answers.concat(q.correct_answer),
+            answers: q.incorrect_answers.concat(q.correct_answer).sort(),
           };
         }),
       };

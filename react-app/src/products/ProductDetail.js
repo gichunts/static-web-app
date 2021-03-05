@@ -78,13 +78,13 @@ function ProductDetail({
       </div>
       <footer className="card-footer ">
         <ButtonFooter
-          className="cancel-button"
+          className="glow-on-hover"
           iconClasses="fas fa-undo"
           onClick={handleCancelProduct}
           label="Cancel"
         />
         <ButtonFooter
-          className="save-button"
+          className="glow-on-hover"
           iconClasses="fas fa-save"
           onClick={handleSave}
           label="Save"
